@@ -1,12 +1,12 @@
 //your variable declarations here
-Rocks [] bunch;
+//Rocks [] bunch;
 Star [] galaxy;
 SpaceShip one;
 public void setup() 
 {
-  bunch=new Rocks[5];
-  for(int i=0;i<bunch.length;i++)
-    bunch[i]=new Rocks();
+  //bunch=new Rocks[5];
+  //for(int i=0;i<bunch.length;i++)
+    //bunch[i]=new Rocks();
   galaxy=new Star[200];
   for(int j=0;j<galaxy.length;j++)
     galaxy[j]=new Star();
@@ -18,22 +18,30 @@ public void draw()
   background(0);
   for(int j=0;j<galaxy.length;j++)
     galaxy[j].show();
-  for(int i=0;i<bunch.length;i++)
-  {
-    bunch[i].show();
-    bunch[i].accelerate(0);
-    bunch[i].rotate(5);
-    bunch[i].move();
-  }
+  //for(int i=0;i<bunch.length;i++)
+  //{
+   // bunch[i].show();
+    //bunch[i].accelerate(0);
+   // bunch[i].rotate(5 );
+    //bunch[i].move();
+  //}
   one.show();
   one.move();
 }
 public void keyPressed()
 {
-  if(key=='w'){one.accelerate(1);}
-  if(key=='s'){one.accelerate(-1);}
-  if(key=='a'){one.rotate(-1);}
-  if(key=='d'){one.rotate(1);}
+  if(key=='w'){one.accelerate(0.1);}
+  if(key=='s'){one.accelerate(-0.1);}
+  if(key=='a'){one.rotate(-5);}
+  if(key=='d'){one.rotate(5);}
+  if(key=='q')
+    {
+      one.setX((int)(Math.random()*640));
+      one.setY((int)(Math.random()*480));
+      one.setPointDirection((int)(Math.random()*361));
+      one.setDirectionX(0);
+      one.setDirectionY(0);
+    }
 }
 class SpaceShip extends Floater  
 {   
@@ -156,6 +164,13 @@ class Star extends Floater
     ellipse((int)myCenterX,(int)myCenterY,5,5);
   }
 }
+//class Bullet extends Floater
+//{
+  //public Bullet()
+ // {
+    //corners=0;
+  //}
+//}
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
