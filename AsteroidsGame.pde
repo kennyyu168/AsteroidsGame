@@ -2,6 +2,7 @@
 //Rocks [] bunch;
 Star [] galaxy;
 SpaceShip one;
+Bullet shoot;
 public void setup() 
 {
   //bunch=new Rocks[5];
@@ -22,18 +23,19 @@ public void draw()
   //{
    // bunch[i].show();
     //bunch[i].accelerate(0);
-   // bunch[i].rotate(5 );
+   // bunch[i].rotate(5);
     //bunch[i].move();
   //}
   one.show();
   one.move();
+  shoot=new Bullet();
 }
 public void keyPressed()
 {
-  if(key=='w'){one.accelerate(0.1);}
-  if(key=='s'){one.accelerate(-0.1);}
-  if(key=='a'){one.rotate(-5);}
-  if(key=='d'){one.rotate(5);}
+  if(key=='w'){one.accelerate(0.5);}
+  if(key=='s'){one.accelerate(-0.5);}
+  if(key=='a'){one.rotate(-10);}
+  if(key=='d'){one.rotate(10);}
   if(key=='q')
     {
       one.setX((int)(Math.random()*640));
@@ -42,6 +44,17 @@ public void keyPressed()
       one.setDirectionX(0);
       one.setDirectionY(0);
     }
+}
+public void mousePressed()
+{
+  shoot.setPointDirection((int)(one.getPointDirection()));
+  shoot.setX(one.getX());
+  shoot.setY(one.getY());
+  shoot.setDirectionX(one.getDirectionX());
+  shoot.setDirectionY(one.getDirectionY());
+  shoot.show();
+  shoot.move();
+  shoot.accelerate(5);
 }
 class SpaceShip extends Floater  
 {   
@@ -164,13 +177,35 @@ class Star extends Floater
     ellipse((int)myCenterX,(int)myCenterY,5,5);
   }
 }
-//class Bullet extends Floater
-//{
-  //public Bullet()
- // {
-    //corners=0;
-  //}
-//}
+class Bullet extends Floater
+{
+  public Bullet()
+  {
+    corners=0;
+    myColor=color(255,208,0);
+    myCenterX=0;
+    myCenterY=0;
+    myDirectionX=0;
+    myDirectionY=0;
+    myPointDirection=0;
+  }
+  public void setX(int x){myCenterX=x;}
+  public int getX(){return (int)myCenterX;}
+  public void setY(int y){myCenterY=y;}
+  public int getY(){return (int)myCenterY;}
+  public void setDirectionX(double x){myDirectionX=x;}
+  public double getDirectionX(){return myDirectionX;}
+  public void setDirectionY(double y){myDirectionY=y;}
+  public double getDirectionY(){return myDirectionY;}
+  public void setPointDirection(int degrees){myPointDirection=degrees;}
+  public double getPointDirection(){return myPointDirection;}
+  public void show()
+  {
+    fill(myColor);
+    stroke(myColor);
+    ellipse((int)myCenterX,(int)myCenterY,3,3);
+  }
+}
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
