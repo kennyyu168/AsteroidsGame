@@ -1,18 +1,18 @@
 //your variable declarations here
-//Rocks [] bunch;
+//Asteroid [] bunch;
 Star [] galaxy;
 SpaceShip one;
 Bullet shoot;
 public void setup() 
 {
-  //bunch=new Rocks[5];
+  //bunch=new Asteroid[5];
   //for(int i=0;i<bunch.length;i++)
-    //bunch[i]=new Rocks();
+    //bunch[i]=new Asteroid();
   galaxy=new Star[200];
   for(int j=0;j<galaxy.length;j++)
     galaxy[j]=new Star();
   one=new SpaceShip();
-  size(640,480);
+  size(1280,720);
 }
 public void draw() 
 {
@@ -38,8 +38,8 @@ public void keyPressed()
   if(key=='d'){one.rotate(10);}
   if(key=='q')
     {
-      one.setX((int)(Math.random()*640));
-      one.setY((int)(Math.random()*480));
+      one.setX((int)(Math.random()*1280));
+      one.setY((int)(Math.random()*720));
       one.setPointDirection((int)(Math.random()*361));
       one.setDirectionX(0);
       one.setDirectionY(0);
@@ -111,9 +111,9 @@ class SpaceShip extends Floater
     public void setPointDirection(int degrees){myPointDirection=degrees;}
     public double getPointDirection(){return myPointDirection;}
 }
-class Rocks extends Floater
+class Asteroid extends Floater
 {
-  public Rocks()
+  public Asteroid()
   {
     corners=6;
     xCorners=new int[corners];
@@ -154,8 +154,8 @@ class Star extends Floater
   {
     corners=0;
     myColor=(255);
-    myCenterX=Math.random()*640;
-    myCenterY=Math.random()*480;
+    myCenterX=Math.random()*1280;
+    myCenterY=Math.random()*720;
     myDirectionX=0;
     myDirectionY=0;
     myPointDirection=0;  
