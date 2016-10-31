@@ -1,13 +1,13 @@
 //your variable declarations here
-//Asteroid [] bunch;
+Asteroid [] bunch;
 Star [] galaxy;
 SpaceShip one;
 Bullet shoot;
 public void setup() 
 {
-  //bunch=new Asteroid[5];
-  //for(int i=0;i<bunch.length;i++)
-    //bunch[i]=new Asteroid();
+  bunch=new Asteroid[10];
+  for(int i=0;i<bunch.length;i++)
+    bunch[i]=new Asteroid();
   galaxy=new Star[200];
   for(int j=0;j<galaxy.length;j++)
     galaxy[j]=new Star();
@@ -19,13 +19,13 @@ public void draw()
   background(0);
   for(int j=0;j<galaxy.length;j++)
     galaxy[j].show();
-  //for(int i=0;i<bunch.length;i++)
-  //{
-   // bunch[i].show();
-    //bunch[i].accelerate(0);
-   // bunch[i].rotate(5);
-    //bunch[i].move();
-  //}
+  for(int i=0;i<bunch.length;i++)
+  {
+    bunch[i].show();
+    bunch[i].accelerate(0);
+    bunch[i].rotate(5);
+    bunch[i].move();
+  }
   one.show();
   one.move();
   shoot=new Bullet();
@@ -118,18 +118,18 @@ class Asteroid extends Floater
     corners=6;
     xCorners=new int[corners];
     yCorners=new int[corners];
-    xCorners[0]=-24;
-    yCorners[0]=12;
-    xCorners[1]=-10;
-    yCorners[1]=16;
+    xCorners[0]=-8;
+    yCorners[0]=2;
+    xCorners[1]=-6;
+    yCorners[1]=6;
     xCorners[2]=0;
-    yCorners[2]=13;
-    xCorners[3]=10;
-    yCorners[3]=11;
-    xCorners[4]=20;
-    yCorners[4]=9;
-    xCorners[5]=20;
-    yCorners[5]=-5;
+    yCorners[2]=4;
+    xCorners[3]=6;
+    yCorners[3]=4;
+    xCorners[4]=4;
+    yCorners[4]=-2;
+    xCorners[5]=-4;
+    yCorners[5]=-4;
     myColor=(200);
     myCenterX=Math.random()*640;
     myCenterY=Math.random()*480;
