@@ -37,13 +37,13 @@ public void keyPressed()
   if(key=='a'){one.rotate(-10);}
   if(key=='d'){one.rotate(10);}
   if(key=='q')
-    {
+  {
       one.setX((int)(Math.random()*1280));
       one.setY((int)(Math.random()*720));
       one.setPointDirection((int)(Math.random()*361));
       one.setDirectionX(0);
       one.setDirectionY(0);
-    }
+  }
 }
 public void mousePressed()
 {
@@ -113,23 +113,25 @@ class SpaceShip extends Floater
 }
 class Asteroid extends Floater
 {
+  private int rotSpeed;
   public Asteroid()
   {
+    rotSpeed=(int)((Math.random()*9)-18);
     corners=6;
     xCorners=new int[corners];
     yCorners=new int[corners];
-    xCorners[0]=-8;
-    yCorners[0]=2;
-    xCorners[1]=-6;
-    yCorners[1]=6;
+    xCorners[0]=-16;
+    yCorners[0]=4;
+    xCorners[1]=-12;
+    yCorners[1]=12;
     xCorners[2]=0;
-    yCorners[2]=4;
-    xCorners[3]=6;
-    yCorners[3]=4;
-    xCorners[4]=4;
-    yCorners[4]=-2;
-    xCorners[5]=-4;
-    yCorners[5]=-4;
+    yCorners[2]=8;
+    xCorners[3]=12;
+    yCorners[3]=8;
+    xCorners[4]=8;
+    yCorners[4]=-4;
+    xCorners[5]=-8;
+    yCorners[5]=-8;
     myColor=(200);
     myCenterX=Math.random()*640;
     myCenterY=Math.random()*480;
@@ -147,6 +149,11 @@ class Asteroid extends Floater
   public double getDirectionY(){return myDirectionY;}
   public void setPointDirection(int degrees){myPointDirection=degrees;}
   public double getPointDirection(){return myPointDirection;}
+  public void move()
+  {
+    rotate(rotSpeed);
+    super.move();
+  }
 }
 class Star extends Floater
 {
