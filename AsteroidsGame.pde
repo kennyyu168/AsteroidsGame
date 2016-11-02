@@ -2,7 +2,7 @@
 Asteroid [] bunch;
 Star [] galaxy;
 SpaceShip one;
-Bullet shoot;
+boolean launch;
 public void setup() 
 {
   bunch=new Asteroid[10];
@@ -27,12 +27,18 @@ public void draw()
     bunch[i].move();
   }
   one.show();
-  one.move();
-  shoot=new Bullet();
+  if(launch==true)
+  {
+    one.move();
+  }
 }
 public void keyPressed()
 {
-  if(key=='w'){one.accelerate(0.5);}
+  if(key=='w')
+  {
+    launch=true;
+    one.accelerate(0.5);
+  }
   if(key=='s'){one.accelerate(-0.5);}
   if(key=='a'){one.rotate(-10);}
   if(key=='d'){one.rotate(10);}
@@ -44,17 +50,6 @@ public void keyPressed()
       one.setDirectionX(0);
       one.setDirectionY(0);
   }
-}
-public void mousePressed()
-{
-  shoot.setPointDirection((int)(one.getPointDirection()));
-  shoot.setX(one.getX());
-  shoot.setY(one.getY());
-  shoot.setDirectionX(one.getDirectionX());
-  shoot.setDirectionY(one.getDirectionY());
-  shoot.show();
-  shoot.move();
-  shoot.accelerate(5);
 }
 class SpaceShip extends Floater  
 {   
