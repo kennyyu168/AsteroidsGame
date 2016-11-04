@@ -6,19 +6,16 @@ boolean launch;
 public void setup() 
 {
   bunch=new Asteroid[10];
-  for(int i=0;i<bunch.length;i++)
-    bunch[i]=new Asteroid();
+  for(int i=0;i<bunch.length;i++){bunch[i]=new Asteroid();}
   galaxy=new Star[200];
-  for(int j=0;j<galaxy.length;j++)
-    galaxy[j]=new Star();
+  for(int j=0;j<galaxy.length;j++){galaxy[j]=new Star();}
   one=new SpaceShip();
   size(1280,720);
 }
 public void draw() 
 {
   background(0);
-  for(int j=0;j<galaxy.length;j++)
-    galaxy[j].show();
+  for(int j=0;j<galaxy.length;j++){galaxy[j].show();}
   for(int i=0;i<bunch.length;i++)
   {
     bunch[i].show();
@@ -34,6 +31,7 @@ public void draw()
 }
 public void keyPressed()
 {
+  //if(key==' '){Bullet.add(new Bullet(one));}
   if(key=='w')
   {
     launch=true;
@@ -181,15 +179,15 @@ class Star extends Floater
 }
 class Bullet extends Floater
 {
-  public Bullet()
+  public Bullet(SpaceShip one)
   {
     corners=0;
     myColor=color(255,208,0);
-    myCenterX=0;
-    myCenterY=0;
-    myDirectionX=0;
-    myDirectionY=0;
-    myPointDirection=0;
+    myCenterX=one.getX();
+    myCenterY=one.getY();
+    myDirectionX=one.getDirectionX();
+    myDirectionY=one.getDirectionY();
+    myPointDirection=one.getPointDirection();
   }
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
