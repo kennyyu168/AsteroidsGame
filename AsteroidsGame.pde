@@ -1,27 +1,34 @@
 //your variable declarations here
-Asteroid [] bunch;
+ArrayList <Asteroid> bunch;
 Star [] galaxy;
 SpaceShip one;
 boolean launch;
+ArrayList <Bullet> shot;
 public void setup() 
 {
-  bunch=new Asteroid[10];
-  for(int i=0;i<bunch.length;i++){bunch[i]=new Asteroid();}
+  bunch=new ArrayList <Asteroid>();
+  for(int i=0;i<15;i++){bunch.add(i, new Asteroid());}
   galaxy=new Star[200];
   for(int j=0;j<galaxy.length;j++){galaxy[j]=new Star();}
   one=new SpaceShip();
+  shot=new ArrayList <Bullet>();
   size(1280,720);
 }
 public void draw() 
 {
   background(0);
   for(int j=0;j<galaxy.length;j++){galaxy[j].show();}
-  for(int i=0;i<bunch.length;i++)
+  for(int i=0;i<15;i++)
   {
-    bunch[i].show();
-    bunch[i].accelerate(0);
-    bunch[i].rotate(5);
-    bunch[i].move();
+    bunch.get(i).show();
+    bunch.get(i).accelerate(0);
+    bunch.get(i).rotate(5);
+    bunch.get(i).move();
+  }
+  for(int k=0;k<shot.size();k++)
+  {
+    shot.get(k).show();
+    shot.get(k).move();
   }
   one.show();
   if(launch==true)
@@ -31,7 +38,13 @@ public void draw()
 }
 public void keyPressed()
 {
-  //if(key==' '){Bullet.add(new Bullet(one));}
+  if(key==' ')
+  {
+    shot.add(new Bullet(one));
+    System.out.println(shot.size());      
+    //shot.show();
+    //shot.move();
+  }
   if(key=='w')
   {
     launch=true;
@@ -109,7 +122,7 @@ class Asteroid extends Floater
   private int rotSpeed;
   public Asteroid()
   {
-    rotSpeed=(int)((Math.random()*9)-18);
+    rotSpeed=(int)((Math.random()*14)-7);
     corners=6;
     xCorners=new int[corners];
     yCorners=new int[corners];
