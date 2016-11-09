@@ -24,11 +24,17 @@ public void draw()
     bunch.get(i).accelerate(0);
     bunch.get(i).rotate(5);
     bunch.get(i).move();
+    if(dist(one.getX(),one.getY(),bunch.get(i).getX(),bunch.get(i).getY())<20)
+    {
+      bunch.remove(i);
+    }
   }
   for(int k=0;k<shot.size();k++)
   {
     shot.get(k).show();
     shot.get(k).move();
+    
+    //System.out.println(shot.get(k).getPointDirection());
   }
   one.show();
   if(launch==true)
@@ -41,7 +47,8 @@ public void keyPressed()
   if(key==' ')
   {
     shot.add(new Bullet(one));
-    System.out.println(shot.size());      
+    System.out.println(shot.size()); 
+    System.out.println(one.getPointDirection());    
     //shot.show();
     //shot.move();
   }
@@ -166,7 +173,7 @@ class Star extends Floater
   public Star()
   {
     corners=0;
-    myColor=(255);
+    myColor=color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
     myCenterX=Math.random()*1280;
     myCenterY=Math.random()*720;
     myDirectionX=0;
@@ -217,6 +224,12 @@ class Bullet extends Floater
     fill(myColor);
     stroke(myColor);
     ellipse((int)myCenterX,(int)myCenterY,3,3);
+  }
+  public void move ()   //move the floater in the current direction of travel
+  {      
+    //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX += 3*myDirectionX;    
+    myCenterY += 3*myDirectionY;       
   }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
