@@ -24,16 +24,17 @@ public void draw()
     bunch.get(i).accelerate(0);
     bunch.get(i).rotate(5);
     bunch.get(i).move();
-    if(dist(one.getX(),one.getY(),bunch.get(i).getX(),bunch.get(i).getY())<20)
+    if(dist(one.getX(),one.getY(),bunch.get(i).getX(),bunch.get(i).getY())<30)
     {
       bunch.remove(i);
+      bunch.add(i, new Asteroid());
     }
+
   }
   for(int k=0;k<shot.size();k++)
   {
     shot.get(k).show();
     shot.get(k).move();
-    
     //System.out.println(shot.get(k).getPointDirection());
   }
   one.show();
