@@ -6,8 +6,9 @@ boolean launch;
 ArrayList <Bullet> shot;
 public void setup() 
 {
+  int ray=15;
   bunch=new ArrayList <Asteroid>();
-  for(int i=0;i<15;i++){bunch.add(i, new Asteroid());}
+  for(int i=0;i<ray;i++){bunch.add(i, new Asteroid());}
   galaxy=new Star[200];
   for(int j=0;j<galaxy.length;j++){galaxy[j]=new Star();}
   one=new SpaceShip();
@@ -29,12 +30,15 @@ public void draw()
       bunch.remove(i);
       bunch.add(i, new Asteroid());
     }
-
   }
   for(int k=0;k<shot.size();k++)
   {
     shot.get(k).show();
     shot.get(k).move();
+    if(dist(bunch.getX(),bunch.getY(),shot.get(k).getX(),shot.get(k).getY())<30)
+    {
+      bullet.remove(i);
+    }
     //System.out.println(shot.get(k).getPointDirection());
   }
   one.show();
@@ -204,11 +208,12 @@ class Bullet extends Floater
   {
     corners=0;
     myColor=color(255,208,0);
+    myPointDirection=one.getPointDirection();
     myCenterX=one.getX();
     myCenterY=one.getY();
     myDirectionX=one.getDirectionX();
     myDirectionY=one.getDirectionY();
-    myPointDirection=one.getPointDirection();
+    
   }
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
@@ -230,7 +235,7 @@ class Bullet extends Floater
   {      
     //change the x and y coordinates by myDirectionX and myDirectionY       
     myCenterX += 3*myDirectionX;    
-    myCenterY += 3*myDirectionY;       
+    myCenterY += 3*myDirectionY;     
   }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
