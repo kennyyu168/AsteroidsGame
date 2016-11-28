@@ -35,10 +35,11 @@ public void draw()
   {
     shot.get(k).show();
     shot.get(k).move();
-    if(dist(bunch.getX(),bunch.getY(),shot.get(k).getX(),shot.get(k).getY())<30)
-    {
-      bullet.remove(i);
-    }
+    shot.get(k).accelerate(1);
+    //if(dist(bunch.getX(),bunch.getY(),shot.get(k).getX(),shot.get(k).getY())<30)
+    //{
+      //bullet.remove(i);
+    //}
     //System.out.println(shot.get(k).getPointDirection());
   }
   one.show();
@@ -112,8 +113,8 @@ class SpaceShip extends Floater
       xCorners[14]=-16;
       yCorners[14]=12;
       myColor=(200);
-      myCenterX=90;
-      myCenterY=240;
+      myCenterX=640;
+      myCenterY=360;
       myDirectionX=3;
       myDirectionY=0;
       myPointDirection=0;
@@ -233,9 +234,9 @@ class Bullet extends Floater
   }
   public void move ()   //move the floater in the current direction of travel
   {      
-    //change the x and y coordinates by myDirectionX and myDirectionY       
-    myCenterX += 3*myDirectionX;    
-    myCenterY += 3*myDirectionY;     
+    //change the x and y coordinates by myDirectionX and myDirectionY
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;     
   }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
