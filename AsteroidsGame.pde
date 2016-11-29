@@ -19,7 +19,7 @@ public void draw()
 {
   background(0);
   for(int j=0;j<galaxy.length;j++){galaxy[j].show();}
-  for(int i=0;i<15;i++)
+  for(int i=0;i<bunch.size();i++)
   {
     bunch.get(i).show();
     bunch.get(i).accelerate(0);
@@ -35,11 +35,18 @@ public void draw()
   {
     shot.get(k).show();
     shot.get(k).move();
-    shot.get(k).accelerate(1);
-    //if(dist(bunch.getX(),bunch.getY(),shot.get(k).getX(),shot.get(k).getY())<30)
-    //{
-      //bullet.remove(i);
-    //}
+    shot.get(k).accelerate(2);
+    for(int z=(bunch.size()-1);z>=0;z--)
+    {
+      if(dist(bunch.get(z).getX(),bunch.get(z).getY(),shot.get(k).getX(),shot.get(k).getY())<20)
+      {
+        bunch.remove(z);
+        shot.remove(k);
+        bunch.add(z, new Asteroid());
+        break;
+      }
+    }
+    
     //System.out.println(shot.get(k).getPointDirection());
   }
   one.show();
@@ -48,16 +55,14 @@ public void draw()
     one.move();
   }
 }
+public void mouseClicked()
+{
+  shot.add(new Bullet(one));
+  System.out.println(shot.size()); 
+  System.out.println(one.getPointDirection());
+}
 public void keyPressed()
 {
-  if(key==' ')
-  {
-    shot.add(new Bullet(one));
-    System.out.println(shot.size()); 
-    System.out.println(one.getPointDirection());    
-    //shot.show();
-    //shot.move();
-  }
   if(key=='w')
   {
     launch=true;
