@@ -20,7 +20,7 @@ public void setup()
 public void draw() 
 { 
   background(0);
-  if(lifeForce>-1)
+  if(lifeForce>0)
   {
     if(mousePressed)
     {
@@ -71,13 +71,17 @@ public void draw()
     }
     fill(255,160,122);
     rect(50,20,lifeForce,20);
+    fill(225);
+    rect(50,40,eradicated,20);
   }
   else
   {
     fill(255);
     textAlign(CENTER);
     text("GAME OVER",320,240);
+    text("SCORE: "+eradicated,320,280);
   }
+  System.out.println(eradicated);
 }
 public void keyPressed()
 {
@@ -97,7 +101,7 @@ public void keyPressed()
       one.setDirectionX(0);
       one.setDirectionY(0);
   }
-  if(key=='r'){lifeForce=150;}
+  if(key=='p'){lifeForce=1;}
 }
 class SpaceShip extends Floater  
 {   
@@ -178,8 +182,8 @@ class Asteroid extends Floater
     myColor=(200);
     myCenterX=Math.random()*640;
     myCenterY=Math.random()*480;
-    myDirectionX=Math.random()*5;
-    myDirectionY=Math.random()*-5;
+    myDirectionX=(Math.random()*10)-5;
+    myDirectionY=(Math.random()*10)-5;
     myPointDirection=Math.random()*10;
   }
   public void setX(int x){myCenterX=x;}
