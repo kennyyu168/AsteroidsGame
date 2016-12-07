@@ -81,7 +81,6 @@ public void draw()
     text("GAME OVER",320,240);
     text("SCORE: "+eradicated,320,280);
   }
-  System.out.println(eradicated);
 }
 public void keyPressed()
 {
